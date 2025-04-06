@@ -10,6 +10,9 @@ namespace App\adms\Views\Services;
 class LoadViewService
 {
 
+    /** @var string $view Recebe o endereço da VIEW */
+    private string $view;
+
     /**
      * Receber o endereço da VIEW e os dados.
      * @param string $nameView Endereço da VIEW que deve ser carregada
@@ -28,8 +31,14 @@ class LoadViewService
      */
     public function loadView(): void
     {
-        if(file_exists('./app/' . $this->nameView . '.php')){
-            include './app/' . $this->nameView . '.php';
+
+        // Definir o caminho da view
+        $this->view = './app/' . $this->nameView . '.php';
+
+        if(file_exists($this->view)){
+
+            // incluir layout
+            include './app/adms/Views/layouts/main.php';
         }else{
             die("Erro 005: Por favor tente novamente. Caso o problema persista, entre em contato o administrador {$_ENV['EMAIL_ADM']}");
         }
