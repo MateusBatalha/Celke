@@ -22,12 +22,12 @@ class ValidationUserRakitService
         // Instanciar a classe validar formulário
         $validator = new Validator();
 
-        $validator->addValidator('unique', new UniqueRule());
+        $validator->addValidator('uniqueInColumns', new UniqueInColumnsRule());
 
         // Definir as regras de validação
         $validation = $validator->make($data, [
             'name'             => 'required',
-            'email'            => 'required|email|unique:adms_users,email',
+            'email'            => 'required|email|uniqueInColumns:adms_users,email;username',
             'password'         => 'required|min:6|regex:/[A-Z]/|regex:/[^\w\s]/',
             'confirm_password' => 'required|same:password',
         ]);
@@ -37,12 +37,12 @@ class ValidationUserRakitService
             'name:required'             => 'O campo nome é obrigatório.',
             'email:required'            => 'O campo e-mail é obrigatório.',
             'email:email'               => 'O campo e-mail deve ser um email válido.',
-            'email:unique'              => 'Já existe um usuário cadastrado com este email',
+            'email:uniqueInColumns'     => 'Já existe um usuário cadastrado com este email',
             'password:required'         => 'O campo senha é obrigatório.',
             'password:min'              => 'A senha deve ter no mínimo 6 caracteres.',
             'password:regex'            => 'A senha deve ter pelo menos uma letra maiúscula e um caractere especial.',
             'confirm_password:required' => 'Necessário confirmar a senha.',
-            'confirm_password:same' => 'A confirmação da senha deve ser igual a senha.',
+            'confirm_password:same'     => 'A confirmação da senha deve ser igual a senha.',
         ]);
 
         // Validar os dados 
