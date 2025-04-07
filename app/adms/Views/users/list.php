@@ -22,7 +22,8 @@ if (isset($this->data['users'])) {
         echo "ID: $id<br>";
         echo "Nome: $name<br>";
         echo "E-mail: $email<br>";
-        echo "<a href='{$_ENV['URL_ADM']}view-user/$id'>Visualizar</a>";
+        echo "<a href='{$_ENV['URL_ADM']}view-user/$id'>Visualizar</a><br>";
+        echo "<a href='{$_ENV['URL_ADM']}update-user/$id'>Editar</a><br>";
 
         echo "<hr>";
     }
