@@ -95,7 +95,26 @@ class UpdateUser
     private function editUser(): void 
     {
         
-        
+        // Instanciar o repository para editar o usuário no banco 
+        $userUpdate = new UsersRepository();
+        $result = $userUpdate->updateUser($this->data['form']);
+
+        // Acessa o if se o repository retornou true 
+        if($result){
+
+            // Criar a mensagem de sucesso
+            $_SESSION['success'] = "Usuário editado com sucesso!";
+
+            // Redirecionar o usuário para página listar
+            header("Location: {$_ENV['URL_ADM']}list-users");
+            return;
+        } else {
+             // Criar a mensagem de erro
+            $this->data['errors'][] = "Usuário não editado!";
+
+            // Chamar o método carregar a view
+            $this->viewUser();
+        }
 
     }
 

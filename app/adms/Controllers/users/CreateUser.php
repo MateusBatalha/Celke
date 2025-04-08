@@ -88,7 +88,7 @@ class CreateUser
             header("Location: {$_ENV['URL_ADM']}list-users");
             return;
         } else {
-            // Criar a mensagem de sucesso
+            // Criar a mensagem de erro
             // $_SESSION['error'] = "Usuário não cadastrado!";
             $this->data['errors'][] = "Usuário não cadastrado!";
 
